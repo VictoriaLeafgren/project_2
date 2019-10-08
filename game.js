@@ -196,18 +196,16 @@ function ready(){
 }	
 
 
-/*
+
 PIXI.loader
 	.add("spooky.mp3")
-	.load(ready)
+	.load(music)
 
 var spooky_song;
-function ready(){
+function music(){
 	spooky_song = PIXI.audioManager.getAudio("spooky.mp3");
 }
 
-spooky.play();
-*/
 
 
 
@@ -217,18 +215,22 @@ function EventHandler(e) {
 
   if (e.keyCode == 87) { // W key
     ghost.position.y -= 10;
+    spooky_song.play();
   }
 
   if (e.keyCode == 83) { // S key
     ghost.position.y += 10;
+    spooky_song.play();
   }
 
   if (e.keyCode == 65) { // A key
     ghost.position.x -= 10;
+    spooky_song.play();
   }
 
   if (e.keyCode == 68) { // D key
     ghost.position.x += 10;
+    spooky_song.play();
   }
 	//starts the game, makes Title and menu disappear, increases vampire and witch size.
 	if((ghost.position.y == start_button.position.y) && (ghost.position.x == start_button.position.x) && has_started == false){
@@ -240,6 +242,7 @@ function EventHandler(e) {
 		vampire.scale.y = 2;
 		witch.scale.x = 2;
 		witch.scale.y = 2;
+
 		
 	}
 	//shows credits
@@ -299,8 +302,8 @@ function EventHandler(e) {
 
 //makes ghost run to a random location, uses tweening
 function mouseHandler(e) {
-  var new_x = Math.floor(Math.random() * 300) + 50;
-  var new_y = Math.floor(Math.random() * 300) + 50;
+  var new_x = Math.round(Math.floor(Math.random() * 380) /10) * 10;
+  var new_y = Math.round(Math.floor(Math.random() * 380) /10) * 10;
   createjs.Tween.get(ghost.position).to({x: new_x, y: new_y}, 1000, createjs.Ease.bounceOut);
 }
 
